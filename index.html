@@ -2,39 +2,74 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Abrir Portón</title>
+<title>Abrir Puerta</title>
 <style>
     body {
-        background: #0c0c0c;
-        color: #fff;
+        margin: 0;
+        background: #111;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
         font-family: Arial, sans-serif;
-        text-align: center;
-        padding-top: 70px;
+        color: #eee;
     }
-    h2 {
-        font-size: 26px;
-        margin-bottom: 40px;
-    }
-    button {
-        font-size: 32px;
-        padding: 25px 40px;
-        background: #d62828;
+
+    #btnPuerta {
+        width: 260px;
+        height: 260px;
+        border-radius: 50%;
+        background: #cc0000;
         border: none;
-        border-radius: 18px;
+        font-size: 34px;
+        font-weight: bold;
         color: white;
         cursor: pointer;
-        width: 80%;
-        max-width: 260px;
-        transition: 0.2s;
+        box-shadow: 0 0 25px #550000;
+        transition: background 0.2s ease, box-shadow 0.2s ease;
     }
-    button:active {
-        transform: scale(0.92);
+
+    #btnPuerta.activo {
+        background: #00a52f;
+        box-shadow: 0 0 25px #003300;
     }
 </style>
 </head>
 <body>
 
-<h2>Bienvenido</h2>
+<button id="btnPuerta" onclick="abrirPuerta()">ABRIR<br>PUERTA</button>
+
+<!-- Sonido -->
+<audio id="ding" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg"></audio>
+
+<script>
+function abrirPuerta() {
+
+    const btn = document.getElementById("btnPuerta");
+    const ding = document.getElementById("ding");
+
+    // Vibración
+    if (navigator.vibrate) navigator.vibrate(100);
+
+    // Sonido cortito
+    ding.currentTime = 0;
+    ding.play();
+
+    // Cambia a verde
+    btn.classList.add("activo");
+
+    // Llamada para abrir tu puerta
+    fetch("https://www.virtualsmarthome.xyz/url_routine_trigger/activate.php?trigger=544ff1c4-0289-4c20-8bde-059d42080dd2&token=f7b36347-0d80-49bd-87c0-aa651806ce32&response=smartphone");
+
+    // Volver a rojo
+    setTimeout(() => {
+        btn.classList.remove("activo");
+    }, 1000);
+}
+</script>
+
+</body>
+</html><h2>Bienvenido</h2>
 
 <button onclick="abrir()">ABRIR PORTÓN</button>
 
