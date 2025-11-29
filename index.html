@@ -16,25 +16,32 @@
     }
 
     #btnPuerta {
-        width: 260px;
-        height: 260px;
+        width: 330px;
+        height: 330px;
         border-radius: 50%;
         background: #cc0000;
         border: none;
-        font-size: 34px;
+        font-size: 40px;
         font-weight: bold;
         color: white;
         cursor: pointer;
-        box-shadow: 0 0 25px #550000;
-        transition: background 0.2s ease, box-shadow 0.2s ease;
+        box-shadow: 0 0 30px #550000;
+        transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+    }
+
+    #btnPuerta:active {
+        transform: scale(0.97);
     }
 
     #btnPuerta.activo {
         background: #00a52f;
-        box-shadow: 0 0 25px #003300;
+        box-shadow: 0 0 30px #003300;
     }
 </style>
 </head>
+<body>
+
+<button id="btnPuerta" onclick</head>
 <body>
 
 <button id="btnPuerta" onclick="abrirPuerta()">ABRIR<br>PUERTA</button>
