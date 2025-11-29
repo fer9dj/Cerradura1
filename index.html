@@ -23,31 +23,53 @@
     border: none;
     font-size: 40px;
     font-weight: bold;
-    color: white      background: #cc0000;
-      transform: scale(0.97);
-    }
-  </style>
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 0 30px #550000;
+    transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+  }
+
+  #btnPuerta:active {
+    transform: scale(0.97);
+  }
+
+  #btnPuerta.activo {
+    background: #00a52f;
+    box-shadow: 0 0 30px #003300;
+  }
+</style>
 </head>
 <body>
 
-  <button id="btn" onclick="abrir()">ABRIR<br>PUERTA</button>
+<button id="btnPuerta" onclick="abrirPuerta()">ABRIR<br>PUERTA</button>
 
-  <script>
-    function abrir() {
-      // Acá va tu webhook o token
-      // fetch("URL_WEBHOOK", { method: "POST" });
+<!-- Sonido de timbre corto -->
+<audio id="ding" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg"></audio>
 
-      // Animación de color para simular "abierto"
-      const btn = document.getElementById("btn");
-      btn.style.background = "green";
-      btn.textContent = "ABIERTO";
+<script>
+function abrirPuerta() {
+  const btn  = document.getElementById("btnPuerta");
+  const ding = document.getElementById("ding");
 
-      setTimeout(() => {
-        btn.style.background = "red";
-        btn.textContent = "ABRIR\nPUERTA";
-      }, 1500);
-    }
-  </script>
+  // Vibración
+  if (navigator.vibrate) navigator.vibrate(120);
+
+  // Sonido
+  ding.currentTime = 0;
+  ding.play();
+
+  // Cambia a verde
+  btn.classList.add("activo");
+
+  // 👉 ACÁ VA TU URL QUE ABRE LA PUERTA
+  fetch("https://www.virtualsmarthome.xyz/url_routine_trigger/activate.php?trigger=544ff1c4-0289-4c20-8bde-059d42080dd2&token=f7b36347-0d80-49bd-87c0-aa651806ce32&response=smartphone");
+
+  // Volver a rojo después de 1 segundo
+  setTimeout(() => {
+    btn.classList.remove("activo");
+  }, 1000);
+}
+</script>
 
 </body>
 </html>
