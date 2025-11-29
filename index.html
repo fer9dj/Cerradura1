@@ -1,103 +1,64 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Abrir Puerta</title>
-<style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abrir Puerta</title>
+  <style>
     body {
-        margin: 0;
-        background: #111;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        font-family: Arial, sans-serif;
-        color: #eee;
+      margin: 0;
+      height: 100vh;
+      background: #111;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
     }
 
-    #btnPuerta {
-        width: 330px;
-        height: 330px;
-        border-radius: 50%;
-        background: #cc0000;
-        border: none;
-        font-size: 40px;
-        font-weight: bold;
-        color: white;
-        cursor: pointer;
-        box-shadow: 0 0 30px #550000;
-        transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+    #btn {
+      width: 260px;
+      height: 260px;
+      background: red;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 32px;
+      font-weight: bold;
+      text-align: center;
+      cursor: pointer;
+      user-select: none;
+      box-shadow: 0 0 20px rgba(255,0,0,0.4);
+      border: none;
     }
 
-    #btnPuerta:active {
-        transform: scale(0.97);
+    #btn:active {
+      background: #cc0000;
+      transform: scale(0.97);
     }
-
-    #btnPuerta.activo {
-        background: #00a52f;
-        box-shadow: 0 0 30px #003300;
-    }
-</style>
+  </style>
 </head>
 <body>
 
-<button id="btnPuerta" onclick</head>
-<body>
+  <button id="btn" onclick="abrir()">ABRIR<br>PUERTA</button>
 
-<button id="btnPuerta" onclick="abrirPuerta()">ABRIR<br>PUERTA</button>
+  <script>
+    function abrir() {
+      // Acá va tu webhook o token
+      // fetch("URL_WEBHOOK", { method: "POST" });
 
-<!-- Sonido -->
-<audio id="ding" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg"></audio>
+      // Animación de color para simular "abierto"
+      const btn = document.getElementById("btn");
+      btn.style.background = "green";
+      btn.textContent = "ABIERTO";
 
-<script>
-function abrirPuerta() {
-
-    const btn = document.getElementById("btnPuerta");
-    const ding = document.getElementById("ding");
-
-    // Vibración
-    if (navigator.vibrate) navigator.vibrate(100);
-
-    // Sonido cortito
-    ding.currentTime = 0;
-    ding.play();
-
-    // Cambia a verde
-    btn.classList.add("activo");
-
-    // Llamada para abrir tu puerta
-    fetch("https://www.virtualsmarthome.xyz/url_routine_trigger/activate.php?trigger=544ff1c4-0289-4c20-8bde-059d42080dd2&token=f7b36347-0d80-49bd-87c0-aa651806ce32&response=smartphone");
-
-    // Volver a rojo
-    setTimeout(() => {
-        btn.classList.remove("activo");
-    }, 1000);
-}
-</script>
-
-</body>
-</html><h2></h2>
-
-<button onclick="abrir()"></button>
-
-<script>
-// TOKEN AUTORIZADO
-const TOKEN_VALIDO = "FER_TOKEN_001";  // <-- cambiá esto cuando quieras autorizar o revocar
-
-function abrir() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const token = urlParams.get("token");
-
-    if (token === TOKEN_VALIDO) {
-        // Redirige a tu URL real que abre el portón
-        window.location.href =
-        "https://www.virtualsmarthome.xyz/url_routine_trigger/activate.php?trigger=544ff1c4-0289-4c20-8bde-059d42080dd2&token=f7b36347-0d80-49bd-87c0-aa651806ce32&response=smartphone";
-    } else {
-        alert("Acceso denegado");
-        navigator.vibrate?.(200); // vibra si está mal
+      setTimeout(() => {
+        btn.style.background = "red";
+        btn.textContent = "ABRIR\nPUERTA";
+      }, 1500);
     }
-}
-</script>
+  </script>
 
 </body>
 </html>
