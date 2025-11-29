@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Abrir Portón</title>
+<style>
+    body {
+        background: #0c0c0c;
+        color: #fff;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding-top: 70px;
+    }
+    h2 {
+        font-size: 26px;
+        margin-bottom: 40px;
+    }
+    button {
+        font-size: 32px;
+        padding: 25px 40px;
+        background: #d62828;
+        border: none;
+        border-radius: 18px;
+        color: white;
+        cursor: pointer;
+        width: 80%;
+        max-width: 260px;
+        transition: 0.2s;
+    }
+    button:active {
+        transform: scale(0.92);
+    }
+</style>
+</head>
+<body>
+
+<h2>Bienvenido</h2>
+
+<button onclick="abrir()">ABRIR PORTÓN</button>
+
+<script>
+// TOKEN AUTORIZADO
+const TOKEN_VALIDO = "FER_TOKEN_001";  // <-- cambiá esto cuando quieras autorizar o revocar
+
+function abrir() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get("token");
+
+    if (token === TOKEN_VALIDO) {
+        // Redirige a tu URL real que abre el portón
+        window.location.href =
+        "https://www.virtualsmarthome.xyz/url_routine_trigger/activate.php?trigger=544ff1c4-0289-4c20-8bde-059d42080dd2&token=f7b36347-0d80-49bd-87c0-aa651806ce32&response=smartphone";
+    } else {
+        alert("Acceso denegado");
+        navigator.vibrate?.(200); // vibra si está mal
+    }
+}
+</script>
+
+</body>
+</html>
