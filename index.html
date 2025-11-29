@@ -16,12 +16,12 @@
   }
 
   #btnPuerta {
-    width: 330px;
-    height: 330px;
+    width: 340px;
+    height: 340px;
     border-radius: 50%;
     background: #cc0000;
     border: none;
-    font-size: 40px;
+    font-size: 36px;
     font-weight: bold;
     color: white;
     cursor: pointer;
@@ -51,7 +51,7 @@ function abrirPuerta() {
   const btn  = document.getElementById("btnPuerta");
   const ding = document.getElementById("ding");
 
-  // Vibración
+  // Vibración (si el celu lo soporta)
   if (navigator.vibrate) navigator.vibrate(120);
 
   // Sonido
@@ -61,13 +61,12 @@ function abrirPuerta() {
   // Cambia a verde
   btn.classList.add("activo");
 
-  // 👉 ACÁ VA TU URL QUE ABRE LA PUERTA
-  fetch("https://www.virtualsmarthome.xyz/url_routine_trigger/activate.php?trigger=544ff1c4-0289-4c20-8bde-059d42080dd2&token=f7b36347-0d80-49bd-87c0-aa651806ce32&response=smartphone");
-
-  // Volver a rojo después de 1 segundo
+  // Pequeña pausa para que se vea verde y suene el timbre
   setTimeout(() => {
-    btn.classList.remove("activo");
-  }, 1000);
+    // Redirección directa a tu URL que abre la puerta
+    window.location.href =
+      "https://www.virtualsmarthome.xyz/url_routine_trigger/activate.php?trigger=544ff1c4-0289-4c20-8bde-059d42080dd2&token=f7b36347-0d80-49bd-87c0-aa651806ce32&response=smartphone";
+  }, 300);
 }
 </script>
 
